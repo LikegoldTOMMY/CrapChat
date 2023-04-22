@@ -15,7 +15,7 @@ public class Sender extends Thread{
     Socket s;
     OutputStream output;
     ObjectOutputStream writer;
-
+    String user;
     public Sender(Socket s) throws IOException {
         this.s = s;
         this.output = s.getOutputStream();
@@ -24,11 +24,13 @@ public class Sender extends Thread{
 
     @Override
     public void run() {
+        
         Scanner terminal = new Scanner(System.in);
         try {
             
             System.out.println("Insert your username: ");
-            writer.writeObject( terminal.nextLine());
+            this.user = terminal.nextLine();
+            writer.writeObject(user );
             
             System.out.println("Insert Password: ");
             writer.writeObject(terminal.nextLine());
@@ -46,7 +48,7 @@ public class Sender extends Thread{
            String mess = terminal.nextLine();
            
             try {
-                writer.writeObject(new Message(mess,dest));
+                writer.writeObject(new Message(mess,dest,this.user));
             } catch (IOException ex) {
                 Logger.getLogger(Sender.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -16,13 +16,17 @@ public class UserConnection extends Thread{
     User self; 
     InputStream input;
     ObjectInputStream reader; 
-    
+    OutputStream output;
+    ObjectOutputStream writer;
     
     public UserConnection(Socket s, ChatProjectServer server) throws IOException {
         this.s = s;
         this.server = server;
+        output = s.getOutputStream();
+        writer = new ObjectOutputStream(output);
         input = s.getInputStream();
         reader = new ObjectInputStream(new BufferedInputStream(input));
+        
     }
     
     boolean handleLogin(){
@@ -81,7 +85,11 @@ public class UserConnection extends Thread{
             ArrayList<Message> m_in = server.getMessages(self.getUsername());
             if( !m_in.isEmpty()){
                 for(Message x : m_in){
-                    System.out.println(x.getContent());
+                    try {
+                        writer.writeObject(x);
+                    } catch (IOException ex) {
+                        Logger.getLogger(UserConnection.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         }

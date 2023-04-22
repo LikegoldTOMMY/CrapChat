@@ -15,37 +15,12 @@ public class ChatProjectClient {
         Socket socket = new Socket("localhost", 7777);
         System.out.println("Connected to server");
         
-
-//Si blocca qua
-        /*
-        InputStream input = socket.getInputStream();
-        ObjectInputStream reader = new ObjectInputStream(input);
-       */
-
+        Reciver r = new Reciver(socket);
+        r.start();
         Sender s = new Sender(socket);
         s.start();
+        
         boolean running = true;
-        /*
-        while (running){
-            //Leggo i messaggi arrivati
 
-            if(input.available() > 0){
-                try {
-                    Message m = (Message) reader.readObject();
-                    System.out.println(m.getReciver()+": "+m.getContent());
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(UserConnection.class.getName()).log(Level.SEVERE, null, ex);
-                } 
-            }
-
-           System.out.println("Insert the message reciver: ");
-           String dest = terminal.nextLine();
-           
-           System.out.println("Insert the message: ");
-           String mess = terminal.nextLine();
-           
-           writer.writeObject(new Message(mess,dest));
-        }
-*/
     }
 }
