@@ -22,11 +22,10 @@ public class UserConnection extends Thread{
     public UserConnection(Socket s, ChatProjectServer server) throws IOException {
         this.s = s;
         this.server = server;
-        output = s.getOutputStream();
-        writer = new ObjectOutputStream(output);
         input = s.getInputStream();
         reader = new ObjectInputStream(new BufferedInputStream(input));
-        
+        output = s.getOutputStream();
+        writer = new ObjectOutputStream(output);        
     }
     
     boolean handleLogin(){

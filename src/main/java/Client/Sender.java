@@ -15,45 +15,31 @@ public class Sender extends Thread{
     Socket s;
     OutputStream output;
     ObjectOutputStream writer;
-    String user;
+    String user = "";
+    
     public Sender(Socket s) throws IOException {
         this.s = s;
         this.output = s.getOutputStream();
         this.writer = new ObjectOutputStream(output);
     }
-
-    @Override
-    public void run() {
-        
-        Scanner terminal = new Scanner(System.in);
+    
+    void setUsername(String u, String pass){
         try {
-            
-            System.out.println("Insert your username: ");
-            this.user = terminal.nextLine();
-            writer.writeObject(user );
-            
-            System.out.println("Insert Password: ");
-            writer.writeObject(terminal.nextLine());
+            user = u;
+            writer.writeObject(u);
+            writer.writeObject(pass);
         } catch (IOException ex) {
             Logger.getLogger(Sender.class.getName()).log(Level.SEVERE, null, ex);
         }
-        boolean running = true;
-        
-        while (running){
-           
-           System.out.println("Insert the message reciver: ");
-           String dest = terminal.nextLine();
-           
-           System.out.println("Insert the message: ");
-           String mess = terminal.nextLine();
-           
-            try {
-                writer.writeObject(new Message(mess,dest,this.user));
-            } catch (IOException ex) {
-                Logger.getLogger(Sender.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
     }
     
+    public boolean isLogedIn(){
+        return (!user.equals(""));
+        
+    }
     
+    void sendMessage(String reciver, String text) throws IOException{
+        writer.writeObject(new Message(text,reciver,this.user));
+    }
+
 }

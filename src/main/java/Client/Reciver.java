@@ -11,11 +11,12 @@ public class Reciver extends Thread{
     Socket s;
     InputStream input;
     ObjectInputStream reader;
-    
-    public Reciver(Socket s) throws IOException {
+    UI u;
+    public Reciver(Socket s, UI u) throws IOException {
         this.s = s;
         this.input = s.getInputStream();
         this.reader = new ObjectInputStream(input);
+        this.u = u;
     }
 
     @Override
@@ -27,7 +28,7 @@ public class Reciver extends Thread{
                         Message m;
                         
                         m = (Message) reader.readObject();
-                        System.out.println(m.getSender()+": "+m.getContent());
+                        u.appendMessage(m);
                     } catch (IOException | ClassNotFoundException ex) {
                         Logger.getLogger(Reciver.class.getName()).log(Level.SEVERE, null, ex);
                     }
