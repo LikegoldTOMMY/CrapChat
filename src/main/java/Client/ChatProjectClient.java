@@ -16,8 +16,8 @@ public class ChatProjectClient {
     
     
 
-    public static void main(String args[]) throws IOException, InterruptedException{
-        
+    public static void main(String args[]) throws IOException, InterruptedException, ClassNotFoundException{
+        /*
         Socket socket = new Socket("localhost", 7777);
         System.out.println("Connected to server");
         
@@ -33,5 +33,26 @@ public class ChatProjectClient {
         Reciver reciver = new Reciver(socket,u);
         reciver.start();
         u.setVisible(true);
+*/
+        ServerConnection conn = new ServerConnection();
+        LoginForm login = new LoginForm(conn);
+        login.setVisible(true);
+        while(!conn.connected()){}
+        login.setVisible(false);
+        UI u = new UI(conn);
+        u.setVisible(true);
+        
+        boolean running = true;
+        while(running){
+            ArrayList<Message> incoming = conn.getMessages();
+            if(!incoming.isEmpty()){
+                for(Message m : incoming){
+                    u.appendMessage(m);
+                }
+            }
+            
+        }
     }
+    
+    
 }
