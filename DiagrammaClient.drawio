@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-06-02T19:12:15.019Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="HG1Vp74wXwPdYXnQtxnn" version="21.3.7" type="github">
+<mxfile host="app.diagrams.net" modified="2023-06-02T19:18:37.031Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="R4dtErNFjB8s9_3-cKo4" version="21.3.7" type="github">
   <diagram name="Pagina-1" id="xdn5yc3qEJCDnDejOAWE">
-    <mxGraphModel dx="1196" dy="632" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1196" dy="1032" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -27,6 +27,30 @@
         </mxCell>
         <mxCell id="1FHUKMI8iDPpWJegqoNq-12" value="- getReciver(): String&lt;br&gt;- getSender(): String&lt;br&gt;- getContent(): String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="1FHUKMI8iDPpWJegqoNq-9">
           <mxGeometry y="88" width="160" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="1FHUKMI8iDPpWJegqoNq-13" value="ServerConnection" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="108" y="288" width="295" height="212" as="geometry" />
+        </mxCell>
+        <mxCell id="1FHUKMI8iDPpWJegqoNq-14" value="- socket: Socket&lt;br&gt;- username: String&lt;br&gt;- Input / Output Strams" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="1FHUKMI8iDPpWJegqoNq-13">
+          <mxGeometry y="26" width="295" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="1FHUKMI8iDPpWJegqoNq-15" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="1FHUKMI8iDPpWJegqoNq-13">
+          <mxGeometry y="103" width="295" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="1FHUKMI8iDPpWJegqoNq-16" value="- Connect( serverIP, username, password): boolean&lt;br&gt;- getMessages(): arrayList&amp;lt;Messages&amp;gt;&lt;br&gt;- sendMessafe(content, reciver) : void&lt;br&gt;- connected(): boolean&lt;br&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="1FHUKMI8iDPpWJegqoNq-13">
+          <mxGeometry y="121" width="295" height="91" as="geometry" />
+        </mxCell>
+        <mxCell id="1FHUKMI8iDPpWJegqoNq-18" value="ChatProjectClient (logic)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="187" y="-100" width="243" height="114" as="geometry" />
+        </mxCell>
+        <mxCell id="1FHUKMI8iDPpWJegqoNq-19" value="- conn: serverConnection&lt;br&gt;- login: UI" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="1FHUKMI8iDPpWJegqoNq-18">
+          <mxGeometry y="26" width="243" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="1FHUKMI8iDPpWJegqoNq-20" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="1FHUKMI8iDPpWJegqoNq-18">
+          <mxGeometry y="70" width="243" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="1FHUKMI8iDPpWJegqoNq-21" value="- main() : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="1FHUKMI8iDPpWJegqoNq-18">
+          <mxGeometry y="88" width="243" height="26" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
