@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+//Thread che rappresenta la connessione fra il server ed un client
 public class UserConnection extends Thread{
 
     Socket s;
@@ -27,7 +29,9 @@ public class UserConnection extends Thread{
         output = s.getOutputStream();
         writer = new ObjectOutputStream(output);        
     }
-    
+    //Handle login è usato per verificare che l'utente che si è appena connesso si indentifichi correttamente
+    //Qui sarebbe possibile implementare una verifca effettiva della password con database
+    //La funziona ritorna false se il login non ha successo
     boolean handleLogin(){
         try {
             try {
@@ -44,6 +48,8 @@ public class UserConnection extends Thread{
         return false;
     }
     
+    
+    //Funzione usata per leggere un messaggio dal socket
     Message readMessage(){
         try {
                 if(input.available()>0){
@@ -71,11 +77,11 @@ public class UserConnection extends Thread{
             System.out.println("Username: " + self.getUsername());
             
         }
-        
+        //Finche la connessione è attiva verifico se sono arrivati messaggi o se devo inviarne
         while(running){
             Message m = readMessage();
             if(m != null){
-                //System.out.println("Message sent form: "  + self.getUsername());
+                System.out.println("Message sent form: "  + self.getUsername());
                 server.AddMessage(m.getReciver(), m);
                
                

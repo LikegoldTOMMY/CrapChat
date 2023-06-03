@@ -5,8 +5,9 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 import Util.Message;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+
+//Questa classe rappresenta la connessione fra il client e il server
 
 public class ServerConnection {
     
@@ -17,6 +18,8 @@ public class ServerConnection {
     private ObjectOutputStream writer;
     private String username;
     
+    
+    //Usato per connettere client e server, ritorna un booleano per informare la  logica che la connessione è avvenuta, o se ci sono stati errori
     public boolean connect(String serverIP, String username, String password){
         try{
             socket = new Socket(serverIP, 7777);
@@ -26,15 +29,19 @@ public class ServerConnection {
             reader = new ObjectInputStream(input);
             this.username = username;
             
+            
+            //Invio le credenziali al server per effetturare l'autenticazione
             writer.writeObject(username);
             writer.writeObject(password);
         } catch (IOException ex) {
             return false;
         }
-        System.out.println("Connected");
+        //System.out.println("Connected");
         return true;
     }
     
+    
+    //Ritorna la lista dei messaggi arrivati tramite il socket
     public ArrayList<Message> getMessages() throws IOException, ClassNotFoundException{
         ArrayList<Message> mList = new ArrayList();
         while(input.available() > 0){
@@ -44,12 +51,13 @@ public class ServerConnection {
         }
         return mList;
     }
-    
+    //Invia un messaggio tramite socket
     public void sendMessage(String content, String reciver) throws IOException{
         Message m = new Message(content,reciver,username);
         writer.writeObject(m);
     }
     
+    //Usata dalla logica per capire se la connessione è attiva
     public boolean connected(){
         try{
             socket.isConnected();
@@ -58,5 +66,7 @@ public class ServerConnection {
         }
         return true;
     }
+
     
+   
 }

@@ -16,10 +16,13 @@ import java.util.logging.Logger;
 public class UI extends javax.swing.JFrame {
 
     private ServerConnection conn;
+    private String chatWith;
     
-    public UI( ServerConnection conn) {
+    public UI( ServerConnection conn, String chatWith) {
+        this.chatWith = chatWith;
         this.conn = conn;
         initComponents();
+        chatWithLabel.setText(chatWith);
     }
 
     /**
@@ -33,11 +36,9 @@ public class UI extends javax.swing.JFrame {
 
         SendButton = new javax.swing.JButton();
         ReciverField = new javax.swing.JTextField();
-        TextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         OutputField = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        chatWithLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,86 +55,66 @@ public class UI extends javax.swing.JFrame {
             }
         });
 
-        TextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldActionPerformed(evt);
-            }
-        });
-
         OutputField.setEditable(false);
         OutputField.setColumns(20);
         OutputField.setRows(5);
         jScrollPane1.setViewportView(OutputField);
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Reciver Name");
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Message Content");
+        chatWithLabel.setFont(new java.awt.Font("Cantarell", 1, 18)); // NOI18N
+        chatWithLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chatWithLabel.setText("Chatwith");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chatWithLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(ReciverField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ReciverField)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(TextField)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SendButton)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                        .addComponent(SendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(chatWithLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ReciverField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SendButton))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(SendButton)
+                        .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldActionPerformed
+    private void ReciverFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReciverFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextFieldActionPerformed
+    }//GEN-LAST:event_ReciverFieldActionPerformed
     public void appendMessage(Message m){
         OutputField.append(m.getSender() + ": " + m.getContent()+"\n");
     }
     private void SendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendButtonActionPerformed
-        String reciver = ReciverField.getText();
+
+        String content = ReciverField.getText();
         ReciverField.setText("");
-        String content = TextField.getText();
-        TextField.setText("");
+        OutputField.append("TU: " + content+"\n");
         try {
-            conn.sendMessage(content, reciver);
+            conn.sendMessage(content, chatWith);
         } catch (IOException ex) {
             Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_SendButtonActionPerformed
 
-    private void ReciverFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReciverFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ReciverFieldActionPerformed
+    }//GEN-LAST:event_SendButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,9 +125,7 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JTextArea OutputField;
     private javax.swing.JTextField ReciverField;
     private javax.swing.JButton SendButton;
-    private javax.swing.JTextField TextField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel chatWithLabel;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
