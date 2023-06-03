@@ -1,6 +1,9 @@
-C:\Users\admin\Documents\NetBeansProjects\chat_project\src\main\java\Util\User.java
-C:\Users\admin\Documents\NetBeansProjects\chat_project\src\main\java\Server\UserConnection.java
-C:\Users\admin\Documents\NetBeansProjects\chat_project\src\main\java\Client\Ui.java
-C:\Users\admin\Documents\NetBeansProjects\chat_project\src\main\java\Client\ChatProjectClient.java
-C:\Users\admin\Documents\NetBeansProjects\chat_project\src\main\java\Server\ChatProjectServer.java
-C:\Users\admin\Documents\NetBeansProjects\chat_project\src\main\java\Util\Message.java
+/home/tommaso/NetBeansProjects/CrapChat/src/main/java/Util/Message.java
+/home/tommaso/NetBeansProjects/CrapChat/src/main/java/Client/ChatStarter.java
+/home/tommaso/NetBeansProjects/CrapChat/src/main/java/Server/UserConnection.java
+/home/tommaso/NetBeansProjects/CrapChat/src/main/java/Client/LoginForm.java
+/home/tommaso/NetBeansProjects/CrapChat/src/main/java/Client/ChatProjectClient.java
+/home/tommaso/NetBeansProjects/CrapChat/src/main/java/Client/ServerConnection.java
+/home/tommaso/NetBeansProjects/CrapChat/src/main/java/Server/ChatProjectServer.java
+/home/tommaso/NetBeansProjects/CrapChat/src/main/java/Client/UI.java
+/home/tommaso/NetBeansProjects/CrapChat/src/main/java/Util/User.java
